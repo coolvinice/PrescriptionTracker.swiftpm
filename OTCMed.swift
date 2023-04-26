@@ -1,4 +1,5 @@
-struct OTCMed {
+struct OTCMed: Identifiable {
+    var id: Int
     var medName: String //Ibuprofen
     var brandName: String //Advil
     var doseAmount: Int //mg
