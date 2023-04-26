@@ -13,7 +13,7 @@ struct ContentView: View {
                                 NavigationLink {
                                     EditPrescription(rx: item)
                                 } label: {
-                                    Text("Medicine")
+                                    Text("Medicine") //Need to display medicine name somehow "Lexapro (Escitalopram)"
                                 }
                             }
                             
@@ -27,7 +27,7 @@ struct ContentView: View {
                                 NavigationLink {
                                     EditOTCMed(med: item)
                                 } label: {
-                                    Text("Medicine")
+                                    Text("Medicine") //Need to display medicine name somehow "Advil (Ibuprofen)"
                                 }
                             }
                             Text("Add New +")
