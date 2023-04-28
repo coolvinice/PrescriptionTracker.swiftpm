@@ -10,10 +10,12 @@ struct ContentView: View {
                     VStack {  //Presctiption List
                         List {
                             ForEach($prescriptions) { item in
+                                let _name: String = item.medName.wrappedValue
+                                let _brand: String = item.brandName.wrappedValue
                                 NavigationLink {
                                     EditPrescription(rx: item)
                                 } label: {
-                                    Text("Medicine")
+                                    Text("\(_brand) (\(_name))")
                                 }
                             }
                             
@@ -24,10 +26,12 @@ struct ContentView: View {
                     VStack {  //OTC List
                         List {
                             ForEach($otcMeds) { item in
+                                let _name: String = item.medName.wrappedValue
+                                let _brand: String = item.brandName.wrappedValue
                                 NavigationLink {
                                     EditOTCMed(med: item)
                                 } label: {
-                                    Text("Medicine")
+                                    Text("\(_brand) (\(_name))")
                                 }
                             }
                             NavigationLink("Add New +"){
