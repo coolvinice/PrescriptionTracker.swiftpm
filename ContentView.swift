@@ -29,8 +29,10 @@ struct ContentView: View {
                             } label: {
                                 Text("\(_brand) (\(_name))")
                             }
+                            NavigationLink("Add New +"){
+                                AddOTCMed()
+                            }
                         }
-                        Text("Add New +")
                     }
                 }
                 
@@ -50,5 +52,4 @@ struct ContentView: View {
         }
         .navigationViewStyle(.stack)
     }
-        
 }
