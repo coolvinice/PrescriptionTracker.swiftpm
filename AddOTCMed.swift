@@ -21,13 +21,27 @@ struct AddOTCMed: View {
                 DetailTextField(title: "Medicine Name", prompt: "Medicine Name", boundString: $medicineName)
                 DetailIntField(title: "Dose Amount (mg)", prompt: "Dose Amount", boundVar: $doseAmount)
                 DetailIntField(title: "Dose Frequency (Hours)", prompt: "Dose Frequency", boundVar: $doseFrequency)
+                NavigationLink {
+                    ContentView()
+                } label: {
+                    ZStack{
+                        Rectangle()
+                            .frame(width: 100, height: 60)
+                            .foregroundColor(.indigo)
+                        Text("Save")
+                            .foregroundColor(.white)
+                    }
+                    
+                }
             }
+            
+            
             
             VStack {
                 Rectangle()
-                    .frame(width: .infinity, height: 50)
+                    .frame(width: .infinity, height: 60)
                     .foregroundColor(.indigo)
-
+                
                 Spacer()
                 Rectangle()
                     .frame(width: .infinity, height: 100)

@@ -49,7 +49,7 @@ struct ContentView: View {
                 
                 VStack {
                     Rectangle()
-                        .frame(width: .infinity, height: 50)
+                        .frame(width: .infinity, height: 60)
                         .foregroundColor(.indigo)
                     
                     Spacer()
