@@ -30,7 +30,9 @@ struct ContentView: View {
                                     Text("Medicine")
                                 }
                             }
-                            Text("Add New +")
+                            NavigationLink("Add New +"){
+                                AddOTCMed()
+                            }
                         }
                     }
                 }

@@ -1,3 +1,5 @@
+import SwiftUI
+
 struct OTCMed: Identifiable {
     var id: Int
     var medName: String //Ibuprofen
