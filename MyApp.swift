@@ -2,7 +2,7 @@ import SwiftUI
 
 @main
 struct MyApp: App {
-    @State var Medication:OTCMedView = OTCMedView()
+    @State var OTCMed:AddOTCMed = AddOTCMed()
     var body: some Scene {
         WindowGroup {
             ContentView()
