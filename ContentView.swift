@@ -7,35 +7,30 @@ struct ContentView: View {
         NavigationView {
             ZStack {
                 VStack {
-                    VStack {  //Presctiption List
-                        List {
-                            ForEach($prescriptions) { item in
-                                let _name: String = item.medName.wrappedValue
-                                let _brand: String = item.brandName.wrappedValue
-                                NavigationLink {
-                                    EditPrescription(rx: item)
-                                } label: {
-                                    Text("\(_brand) (\(_name))")
-                                }
+                    List { //Prescription List
+                        ForEach($prescriptions) { item in
+                            let _name: String = item.medName.wrappedValue
+                            let _brand: String = item.brandName.wrappedValue
+                            NavigationLink {
+                                EditPrescription(rx: item)
+                            } label: {
+                                Text("\(_brand) (\(_name))")
                             }
-                            
-                            Text("Add New +")
                         }
+                        Text("Add New +")
                     }
                     
-                    VStack {  //OTC List
-                        List {
-                            ForEach($otcMeds) { item in
-                                let _name: String = item.medName.wrappedValue
-                                let _brand: String = item.brandName.wrappedValue
-                                NavigationLink {
-                                    EditOTCMed(med: item)
-                                } label: {
-                                    Text("\(_brand) (\(_name))")
-                                }
+                    List { //OTC List
+                        ForEach($otcMeds) { item in
+                            let _name: String = item.medName.wrappedValue
+                            let _brand: String = item.brandName.wrappedValue
+                            NavigationLink {
+                                EditOTCMed(med: item)
+                            } label: {
+                                Text("\(_brand) (\(_name))")
                             }
-                            Text("Add New +")
                         }
+                        Text("Add New +")
                     }
                 }
                 
@@ -53,5 +48,7 @@ struct ContentView: View {
                 .frame(width: .infinity, height: .infinity)
             }
         }
+        .navigationViewStyle(.stack)
     }
+        
 }
