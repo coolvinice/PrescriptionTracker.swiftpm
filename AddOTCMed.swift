@@ -13,6 +13,8 @@ struct AddOTCMed: View {
     @State var medicineName : String  = ""
     @State var doseAmount : Int =  0
     @State var doseFrequency : Int  = 0
+    @Binding var Medication : [OTCMed]
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         ZStack {
@@ -28,11 +30,15 @@ struct AddOTCMed: View {
                         Rectangle()
                             .frame(width: 100, height: 60)
                             .foregroundColor(.indigo)
-                        Text("Save")
+                        Button("Save"){
+                            dismiss()
+                            Medication.append(OTCMed(id: Medication.count, medName: medicineName, brandName: brandName, doseAmount: doseAmount, doseFrequency: doseFrequency, timerRunning: false))
+                        }
                             .foregroundColor(.white)
                     }
                     
                 }
+//                .navigationBarBackButtonHidden(true)
             }
             
             
