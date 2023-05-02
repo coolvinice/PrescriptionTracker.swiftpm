@@ -5,10 +5,12 @@ struct EditPrescription: View {
     var body: some View {
         ZStack {
             VStack {
-                DetailTextField(title: "Brand Name", prompt: "Lexapro", boundString: $rx.brandName)
-                DetailTextField(title: "Medicine Name", prompt: "Escitalopram", boundString: $rx.medName)
-                DetailIntField(title: "Dose Amount (mg)", prompt: "7", boundVar: $rx.doseAmount)
-                DetailIntField(title: "Dose Frequency (Hours)", prompt: "24", boundVar: $rx.doseFrequency)
+                List {
+                    DetailTextField(title: "Brand Name", prompt: "Lexapro", boundString: $rx.brandName)
+                    DetailTextField(title: "Medicine Name", prompt: "Escitalopram", boundString: $rx.medName)
+                    DetailIntField(title: "Dose Amount (mg)", prompt: "7", boundVar: $rx.doseAmount)
+                    DetailIntField(title: "Dose Frequency (Hours)", prompt: "24", boundVar: $rx.doseFrequency)
+                }
             }
             
             VStack {
@@ -32,12 +34,10 @@ struct DetailTextField: View {
     let prompt: String
     @Binding var boundString: String
     var body: some View {
-        HStack {
-            Text(title)
+        Section(title) {
             TextField(prompt, text: $boundString)
-                .textFieldStyle(.roundedBorder)
+                .textFieldStyle(.plain)
         }
-        .padding(5)
     }
 }
 
@@ -46,11 +46,9 @@ struct DetailIntField: View {
     let prompt: String
     @Binding var boundVar: Int
     var body: some View {
-        HStack {
-            Text(title)
+        Section(title) {
             TextField(prompt, value: $boundVar, format: .number)
-                .textFieldStyle(.roundedBorder)
+                .textFieldStyle(.plain)
         }
-        .padding(5)
     }
 }
