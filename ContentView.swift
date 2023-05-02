@@ -1,24 +1,23 @@
 import SwiftUI
 
-struct ContentView: View {
-    @State var tempArray:  [String] = ["Medcine 1", "Medicine 2"]
+struct ContentView: View{
+    @State var tempArray:  [Medicine] = []
     var body: some View {
-        VStack {
-            VStack {  //Presctiption List
-                List {
-                    ForEach(tempArray, id: \.self) { item in
-                        Text(item)
-                    }
-                    Text("Add New +")
+        VStack {  //Presctiption List
+            MainView(tempArray: $tempArray)
+            List {
+                ForEach(tempArray, id: \.self) { item in
+                    Prescribed(item: item)
                 }
             }
-            
-            VStack {  //OTC List
-                List {
-                    ForEach(tempArray, id: \.self) { item in
-                        Text(item)
-                    }
-                    Text("Add New +")
+        }
+        
+        
+        VStack {  //OTC List
+            List {
+                ForEach(tempArray, id: \.self) { item in
+                    Text("Add +")
+                    
                 }
             }
         }
