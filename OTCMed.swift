@@ -10,6 +10,13 @@ struct OTCMed: Identifiable, Codable {
 }
 
 struct MyView: View {
+    @State var id: Int = 0
+    @State var medName: String = ""
+    @State var brandName: String = ""
+    @State var doseAmount: Int = 0
+    @State var doseFrequency: Int = 0
+    @State var timerRunning: Bool = false
+    @Binding var otcMeds: [OTCMed]
     var body: some View {
         Button {
             let variable = 0
@@ -17,10 +24,19 @@ struct MyView: View {
             if let encoded = try? JSONEncoder().encode(variable) {
                 encodedList.append(encoded)
             }
+            
+            if let encoded = try? JSONEncoder().encode(variable) {
+                encodedList.append(encoded)
+            }
 
             if let data = UserDefaults.standard.object(forKey: "OTCMeds") as? Data {
                 if let loadedMed = try? JSONDecoder().decode(OTCMed.self, from: data) {
+                    id = encodedList.count
                     medName = loadedMed.medName
+                    brandName = loadedMed.brandName
+                    doseAmount =  loadedMed.doseAmount
+                    doseFrequency = loadedMed.doseFrequency
+                    timerRunning = loadedMed.timerRunning
                     
                 }
             }
