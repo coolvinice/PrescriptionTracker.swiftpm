@@ -20,6 +20,10 @@ struct ContentView: View {
                                 } label: {
                                     Text("\(_brand) (\(_name))")
                                 }
+                            }
+                            NavigationLink {
+                                AddPrescription(prescriptions: $prescriptions)
+                            } label: {
                                 Text("Add New +")
                             }
                         }
@@ -28,6 +32,7 @@ struct ContentView: View {
                             ForEach($otcMeds) { item in
                                 let _name: String = item.medName.wrappedValue
                                 let _brand: String = item.brandName.wrappedValue
+                                
                                 NavigationLink {
                                     EditOTCMed(med: item)
                                 } label: {
