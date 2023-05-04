@@ -11,7 +11,7 @@ struct ContentView: View {
                     Text("Active Medications")
                     
                     List {
-                        Section("Presctiption") {
+                        Section("Prescription") {
                             ForEach($prescriptions) { item in
                                 let _name: String = item.medName.wrappedValue
                                 let _brand: String = item.brandName.wrappedValue
@@ -34,10 +34,11 @@ struct ContentView: View {
                                 } label: {
                                     Text("\(_brand) (\(_name))")
                                 }
-                                
-                                }
-                            NavigationLink("Add New +"){
-                                    AddOTCMed(Medication: $otcMeds)
+                            }
+                            NavigationLink {
+                                AddOTCMed(Medication: $otcMeds)
+                            } label: {
+                                Text("Add New +")
                             }
                         }
                     }

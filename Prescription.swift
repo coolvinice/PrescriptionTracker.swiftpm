@@ -1,4 +1,4 @@
-struct Prescription: Identifiable {
+struct Prescription: Identifiable, Codable {
     var id: Int
     var medName: String //Escitalopram
     var brandName: String //Lexapro
