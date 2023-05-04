@@ -13,7 +13,8 @@ struct AddOTCMed: View {
     @State var medicineName : String  = ""
     @State var doseAmount : Int =  0
     @State var doseFrequency : Int  = 0
-    @Binding var Medication : [OTCMed]
+    @Binding var otcMeds : [OTCMed]
+    @Binding var prescriptions : [Prescription]
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
@@ -26,7 +27,8 @@ struct AddOTCMed: View {
                     DetailIntField(title: "Dose Frequency (Hours)", prompt: "Dose Frequency", boundVar: $doseFrequency)
                     Button {
                         dismiss()
-                        Medication.append(OTCMed(id: Medication.count, medName: medicineName, brandName: brandName, doseAmount: doseAmount, doseFrequency: doseFrequency, timerRunning: false))
+                        otcMeds.append(OTCMed(id: otcMeds.count, medName: medicineName, brandName: brandName, doseAmount: doseAmount, doseFrequency: doseFrequency, timerRunning: false))
+                        SaveLoad().saveArrays(rx: prescriptions, otc: otcMeds)
                     } label: {
                         Text("Save")
                     }

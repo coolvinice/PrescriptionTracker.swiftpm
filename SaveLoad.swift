@@ -14,6 +14,12 @@ struct SaveLoad {
         } else {
             print("Error Saving Prescriptions")
         }
+        
+        if let encoded = try? JSONEncoder().encode(otc){
+            UserDefaults.standard.set(encoded, forKey: "otc")
+        } else {
+            print("Error Saving OTC Medications")
+        }
     }
     
     func loadArrays() -> ([Prescription], [OTCMed]) {
@@ -32,7 +38,7 @@ struct SaveLoad {
                 loadedOTC = decoded
             }
         } else {
-            print("Error Loading Over-the-Counter Medications")
+            print("Error Loading OTC Medications")
         }
         
         return (loadedRX, loadedOTC)
