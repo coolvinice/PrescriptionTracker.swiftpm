@@ -13,6 +13,8 @@ struct AddOTCMed: View {
     @State var medicineName : String  = ""
     @State var doseAmount : Int =  0
     @State var doseFrequency : Int  = 0
+    @Binding var Medication : [OTCMed]
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         ZStack {
@@ -21,6 +23,10 @@ struct AddOTCMed: View {
                 DetailTextField(title: "Medicine Name", prompt: "Medicine Name", boundString: $medicineName)
                 DetailIntField(title: "Dose Amount (mg)", prompt: "Dose Amount", boundVar: $doseAmount)
                 DetailIntField(title: "Dose Frequency (Hours)", prompt: "Dose Frequency", boundVar: $doseFrequency)
+            }
+            Button("Save"){
+                dismiss()
+                Medication.append(OTCMed(id: Medication.count, medName: medicineName, brandName: brandName, doseAmount: doseAmount, doseFrequency: doseFrequency, timerRunning: false))
             }
             
             VStack {
