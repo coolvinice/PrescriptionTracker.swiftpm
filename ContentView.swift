@@ -20,6 +20,10 @@ struct ContentView: View {
                                 } label: {
                                     Text("\(_brand) (\(_name))")
                                 }
+                            }
+                            NavigationLink {
+                                AddPrescription(prescriptions: $prescriptions)
+                            } label: {
                                 Text("Add New +")
                             }
                         }
