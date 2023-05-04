@@ -10,8 +10,6 @@ struct EditOTCMed: View {
                     DetailTextField(title: "Medicine Name", prompt: "Escitalopram", boundString: $med.medName)
                     DetailIntField(title: "Dose Amount (mg)", prompt: "7", boundVar: $med.doseAmount)
                     DetailIntField(title: "Dose Frequency (Hours)", prompt: "24", boundVar: $med.doseFrequency)
-                    
-                    
                 }
             }
             

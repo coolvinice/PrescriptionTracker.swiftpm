@@ -19,15 +19,20 @@ struct AddOTCMed: View {
     var body: some View {
         ZStack {
             VStack {
-                DetailTextField(title: "Brand Name", prompt: "Brand Name", boundString: $brandName)
-                DetailTextField(title: "Medicine Name", prompt: "Medicine Name", boundString: $medicineName)
-                DetailIntField(title: "Dose Amount (mg)", prompt: "Dose Amount", boundVar: $doseAmount)
-                DetailIntField(title: "Dose Frequency (Hours)", prompt: "Dose Frequency", boundVar: $doseFrequency)
+                List {
+                    DetailTextField(title: "Brand Name", prompt: "Brand Name", boundString: $brandName)
+                    DetailTextField(title: "Medicine Name", prompt: "Medicine Name", boundString: $medicineName)
+                    DetailIntField(title: "Dose Amount (mg)", prompt: "Dose Amount", boundVar: $doseAmount)
+                    DetailIntField(title: "Dose Frequency (Hours)", prompt: "Dose Frequency", boundVar: $doseFrequency)
+                    Button {
+                        dismiss()
+                        Medication.append(OTCMed(id: Medication.count, medName: medicineName, brandName: brandName, doseAmount: doseAmount, doseFrequency: doseFrequency, timerRunning: false))
+                    } label: {
+                        Text("Save")
+                    }
+                }
             }
-            Button("Save"){
-                dismiss()
-                Medication.append(OTCMed(id: Medication.count, medName: medicineName, brandName: brandName, doseAmount: doseAmount, doseFrequency: doseFrequency, timerRunning: false))
-            }
+            
             
             VStack {
                 Rectangle()
