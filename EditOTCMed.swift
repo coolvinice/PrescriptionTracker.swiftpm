@@ -1,29 +1,42 @@
 import SwiftUI
 
 struct EditOTCMed: View {
-    @State var brandName : String  = ""
-    @State var medicineName : String  = ""
-    @State var doseAmount : Int =  0
-    @State var doseFrequency : Int  = 0
-    @Binding var Medication : [OTCMed]
     @Binding var med: OTCMed
+    @Binding var rxArray: [Prescription]
+    @Binding var otcArray: [OTCMed]
     @Environment(\.dismiss) private var dismiss
+    @State var brand: String = ""
+    @State var name: String = ""
+    @State var amount: Int = 0
+    @State var frequency: Int = 0
     var body: some View {
         ZStack {
             VStack {
                 List {
-                    DetailTextField(title: "Brand Name", prompt: "Lexapro", boundString: $med.brandName)
-                    DetailTextField(title: "Medicine Name", prompt: "Escitalopram", boundString: $med.medName)
-                    DetailIntField(title: "Dose Amount (mg)", prompt: "7", boundVar: $med.doseAmount)
-                    DetailIntField(title: "Dose Frequency (Hours)", prompt: "24", boundVar: $med.doseFrequency)
-                    Button {
-                        dismiss()
-                        Medication.remove(atOffsets: IndexSet())
-                    } label: {
-                        Text("Remove")
+                    DetailTextField(title: "Brand Name", prompt: "Lexapro", boundString: $brand)
+                    DetailTextField(title: "Medicine Name", prompt: "Escitalopram", boundString: $name)
+                    DetailIntField(title: "Dose Amount (mg)", prompt: "7", boundVar: $amount)
+                    DetailIntField(title: "Dose Frequency (Hours)", prompt: "24", boundVar: $frequency)
+                    Section {
+                        Button {
+                            med.brandName = brand
+                            med.medName = name
+                            med.doseAmount = amount
+                            med.doseFrequency = frequency
+                            SaveLoad().saveArrays(rx: rxArray, otc: otcArray)
+                            dismiss()
+                        } label: {
+                            Text("Save")
+                        }
                     }
 
                 }
+            }
+            .onAppear() {
+                brand = med.brandName
+                name = med.medName
+                amount = med.doseAmount
+                frequency = med.doseFrequency
             }
             
             VStack {

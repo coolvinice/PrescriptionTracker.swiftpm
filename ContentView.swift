@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var prescriptions: [Prescription] = [Prescription(id: 0, medName: "Escitalopram", brandName: "Lexapro", doseAmount: 7, doseFrequency: 24, hasTaken: false)]
-    @State var otcMeds: [OTCMed] = [OTCMed(id: 0, medName: "Ibuprofen", brandName: "Advil", doseAmount: 10, doseFrequency: 24, timerRunning: false)]
+    @State var prescriptions: [Prescription] = SaveLoad().loadArrays().0
+    @State var otcMeds: [OTCMed] = SaveLoad().loadArrays().1
     
     var body: some View {
         NavigationView {
@@ -16,7 +16,7 @@ struct ContentView: View {
                                 let _name: String = item.medName.wrappedValue
                                 let _brand: String = item.brandName.wrappedValue
                                 NavigationLink {
-                                    EditPrescription(rx: item)
+                                    EditPrescription(rx: item, rxArray: $prescriptions, otcArray: $otcMeds)
                                 } label: {
                                     Text("\(_brand) (\(_name))")
                                 }
@@ -32,15 +32,14 @@ struct ContentView: View {
                             ForEach($otcMeds) { item in
                                 let _name: String = item.medName.wrappedValue
                                 let _brand: String = item.brandName.wrappedValue
-                                
                                 NavigationLink {
-                                    EditOTCMed(med: item, Medicine : $otcMeds)
+                                    EditOTCMed(med: item, rxArray: $prescriptions, otcArray: $otcMeds)
                                 } label: {
                                     Text("\(_brand) (\(_name))")
                                 }
                             }
                             NavigationLink {
-                                AddOTCMed(Medication: $otcMeds)
+                                AddOTCMed(otcMeds: $otcMeds, prescriptions: $prescriptions)
                             } label: {
                                 Text("Add New +")
                             }
