@@ -34,7 +34,7 @@ struct ContentView: View {
                                 let _brand: String = item.brandName.wrappedValue
                                 
                                 NavigationLink {
-                                    EditOTCMed(med: item)
+                                    EditOTCMed(med: item, Medicine : $otcMeds)
                                 } label: {
                                     Text("\(_brand) (\(_name))")
                                 }
