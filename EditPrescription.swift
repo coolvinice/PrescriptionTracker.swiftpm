@@ -28,6 +28,15 @@ struct EditPrescription: View {
                         } label: {
                             Text("Save")
                         }
+                        Button {
+                            if let index = rxArray.firstIndex(of: rx){
+                                rxArray.remove(at: index)
+                            }
+                            SaveLoad().saveArrays(rx: rxArray, otc: otcArray)
+                            dismiss()
+                        } label: {
+                            Text("Delete")
+                        }
                     }
                 }
             }

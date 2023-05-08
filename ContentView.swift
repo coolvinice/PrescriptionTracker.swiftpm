@@ -22,7 +22,7 @@ struct ContentView: View {
                                 }
                             }
                             NavigationLink {
-                                AddPrescription(prescriptions: $prescriptions)
+                                AddPrescription(otcMeds: $otcMeds, prescriptions: $prescriptions)
                             } label: {
                                 Text("Add New +")
                             }

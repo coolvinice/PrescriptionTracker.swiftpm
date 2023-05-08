@@ -30,10 +30,11 @@ struct EditOTCMed: View {
                             Text("Save")
                         }
                         Button {
-                            dismiss()
                             if let index = otcArray.firstIndex(of: med){
                                 otcArray.remove(at: index)
                             }
+                            SaveLoad().saveArrays(rx: rxArray, otc: otcArray)
+                            dismiss()   
                         } label: {
                             Text("Delete")
                         }
