@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct OTCMed: Identifiable, Codable {
+struct OTCMed: Identifiable, Codable, Equatable {
     var id: Int
     var medName: String //Ibuprofen
     var brandName: String //Advil

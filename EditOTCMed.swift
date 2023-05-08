@@ -9,6 +9,7 @@ struct EditOTCMed: View {
     @State var name: String = ""
     @State var amount: Int = 0
     @State var frequency: Int = 0
+
     var body: some View {
         ZStack {
             VStack {
@@ -27,6 +28,14 @@ struct EditOTCMed: View {
                             dismiss()
                         } label: {
                             Text("Save")
+                        }
+                        Button {
+                            dismiss()
+                            if let index = otcArray.firstIndex(of: med){
+                                otcArray.remove(at: index)
+                            }
+                        } label: {
+                            Text("Delete")
                         }
                     }
 
