@@ -2,15 +2,40 @@ import SwiftUI
 
 struct EditPrescription: View {
     @Binding var rx: Prescription
+    @Binding var rxArray: [Prescription]
+    @Binding var otcArray: [OTCMed]
+    @Environment(\.dismiss) private var dismiss
+    @State var brand: String = ""
+    @State var name: String = ""
+    @State var amount: Int = 0
+    @State var frequency: Int = 0
     var body: some View {
         ZStack {
             VStack {
                 List {
-                    DetailTextField(title: "Brand Name", prompt: "Lexapro", boundString: $rx.brandName)
-                    DetailTextField(title: "Medicine Name", prompt: "Escitalopram", boundString: $rx.medName)
-                    DetailIntField(title: "Dose Amount (mg)", prompt: "7", boundVar: $rx.doseAmount)
-                    DetailIntField(title: "Dose Frequency (Hours)", prompt: "24", boundVar: $rx.doseFrequency)
+                    DetailTextField(title: "Brand Name", prompt: "Lexapro", boundString: $brand)
+                    DetailTextField(title: "Medicine Name", prompt: "Escitalopram", boundString: $name)
+                    DetailIntField(title: "Dose Amount (mg)", prompt: "7", boundVar: $amount)
+                    DetailIntField(title: "Dose Frequency (Hours)", prompt: "24", boundVar: $frequency)
+                    Section {
+                        Button {
+                            rx.brandName = brand
+                            rx.medName = name
+                            rx.doseAmount = amount
+                            rx.doseFrequency = frequency
+                            SaveLoad().saveArrays(rx: rxArray, otc: otcArray)
+                            dismiss()
+                        } label: {
+                            Text("Save")
+                        }
+                    }
                 }
+            }
+            .onAppear() {
+                brand = rx.brandName
+                name = rx.medName
+                amount = rx.doseAmount
+                frequency = rx.doseFrequency
             }
             
             VStack {
