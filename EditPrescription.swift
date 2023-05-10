@@ -14,9 +14,13 @@ struct EditPrescription: View {
             VStack {
                 List {
                     DetailTextField(title: "Brand Name", prompt: "Lexapro", boundString: $brand)
+                        .disableAutocorrection(true)
                     DetailTextField(title: "Medicine Name", prompt: "Escitalopram", boundString: $name)
+                        .disableAutocorrection(true)
                     DetailIntField(title: "Dose Amount (mg)", prompt: "7", boundVar: $amount)
+                        .disableAutocorrection(true)
                     DetailIntField(title: "Dose Frequency (Hours)", prompt: "24", boundVar: $frequency)
+                        .disableAutocorrection(true)
                     Section {
                         Button {
                             rx.brandName = brand
