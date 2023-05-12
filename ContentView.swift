@@ -8,8 +8,6 @@ struct ContentView: View {
         NavigationView {
             ZStack {
                 VStack {
-                    Text("Active Medications")
-                    
                     List {
                         Section("Prescription") {
                             ForEach($prescriptions) { item in
@@ -34,10 +32,11 @@ struct ContentView: View {
                                 let brand: String = item.brandName.wrappedValue
                                 let amount: Int = item.doseAmount.wrappedValue
                                 let frequency: Int = item.doseFrequency.wrappedValue
+                                let lastDose: Date = item.lastDose.wrappedValue
                                 NavigationLink {
                                     EditOTCMed(med: item, rxArray: $prescriptions, otcArray: $otcMeds)
                                 } label: {
-                                    OTCListItem(name: name, brand: brand, amount: amount, frequency: frequency, timeLeft: 75)
+                                    OTCListItem(name: name, brand: brand, amount: amount, frequency: frequency, lastDose: lastDose)
                                 }
                             }
                             NavigationLink {
@@ -64,6 +63,7 @@ struct ContentView: View {
             }
         }
         .navigationViewStyle(.stack)
+        .navigationTitle("Active Medications")
     }
 }
 
@@ -72,26 +72,15 @@ struct OTCListItem: View {
     let brand: String
     let amount: Int
     let frequency: Int
-    @State var timeLeft: Int
-    @State var timeString: String = ""
+    let lastDose: Date
     var body: some View {
         VStack(alignment: .leading) {
             Text("\(brand) (\(name))")
                 .font(.title2)
-            Text(verbatim: "\(amount) mg Every \(frequency == 1 ? "Hour" : "\(frequency) Hours") - \(timeString) Until Next Dose")
+            Text(verbatim: "\(amount) mg Every \(frequency == 1 ? "Hour" : "\(frequency) Hours")")
+            TimerView(endDate: lastDose.addingTimeInterval(TimeInterval(frequency * 360)), referenceDate: Date.now)
+                
         }
-        .onChange(of: timeLeft) { newValue in
-            let minutes = newValue % 60
-            let hours = newValue / 60
-            timeString = "\(hours):\(minutes)"
-        }
-        .onAppear() {
-            let minutes = timeLeft % 60
-            let hours = timeLeft / 60
-            timeString = "\(String(format: "%02d", hours)):\(String(format: "%02d", minutes))"
-        }
-        .onChange(of: Date.now) { newValue in
-//            timeLeft = Date.now.advanced(by: TimeInterval(frequency)).formatted() as Int
-        }
+        
     }
 }
