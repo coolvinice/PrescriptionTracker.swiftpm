@@ -1,10 +1,3 @@
-//
-//  AddPrescription.swift
-//  PrescriptionTracker
-//
-//  Created by Dylan Domeracki on 5/4/23.
-//
-
 import Foundation
 import SwiftUI
 
@@ -18,18 +11,24 @@ struct AddPrescription: View {
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
-        VStack {
-            List {
-                DetailTextField(title: "Brand Name", prompt: "Brand Name", boundString: $brandName)
-                DetailTextField(title: "Medicine Name", prompt: "Medicine Name", boundString: $medicineName)
-                DetailIntField(title: "Dose Amount (mg)", prompt: "Dose Amount", boundVar: $doseAmount)
-                DetailIntField(title: "Dose Frequency (Hours)", prompt: "Dose Frequency", boundVar: $doseFrequency)
-                Button {
-                    dismiss()
-                    prescriptions.append(Prescription(id: prescriptions.count, medName: medicineName, brandName: brandName, doseAmount: doseAmount, doseFrequency: doseFrequency, hasTaken: false))
-                    SaveLoad().saveArrays(rx: prescriptions, otc: otcMeds)
-                } label: {
-                    Text("Save")
+        ZStack {
+            VStack {
+                List {
+                    DetailTextField(title: "Brand Name", prompt: "Brand Name", boundString: $brandName)
+                        .disableAutocorrection(true)
+                    DetailTextField(title: "Medicine Name", prompt: "Medicine Name", boundString: $medicineName)
+                        .disableAutocorrection(true)
+                    DetailIntField(title: "Dose Amount (mg)", prompt: "Dose Amount", boundVar: $doseAmount)
+                        .disableAutocorrection(true)
+                    DetailIntField(title: "Dose Frequency (Hours)", prompt: "Dose Frequency", boundVar: $doseFrequency)
+                        .disableAutocorrection(true)
+                    Button {
+                        dismiss()
+                        prescriptions.append(Prescription(id: prescriptions.count, medName: medicineName, brandName: brandName, doseAmount: doseAmount, doseFrequency: doseFrequency, hasTaken: false))
+                        SaveLoad().saveArrays(rx: prescriptions, otc: otcMeds)
+                    } label: {
+                        Text("Save")
+                    }
                 }
             }
         }

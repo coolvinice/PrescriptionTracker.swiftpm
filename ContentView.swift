@@ -71,8 +71,8 @@ struct OTCListItem: View {
     let lastDose: Date
     var body: some View {
         VStack(alignment: .leading) {
-            Text("\(brand) (\(name))")
-                .font(.title2)
+            Text("**\(brand) (\(name))**")
+                .font(.title)
             Text(verbatim: "\(amount) mg Every \(frequency == 1 ? "Hour" : "\(frequency) Hours")")
             TimerView(endDate: lastDose.addingTimeInterval(TimeInterval(frequency * 360)), referenceDate: Date.now)
                 

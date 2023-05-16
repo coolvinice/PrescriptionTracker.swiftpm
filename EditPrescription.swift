@@ -10,31 +10,37 @@ struct EditPrescription: View {
     @State var amount: Int = 0
     @State var frequency: Int = 0
     var body: some View {
-        VStack {
-            List {
-                DetailTextField(title: "Brand Name", prompt: "Lexapro", boundString: $brand)
-                DetailTextField(title: "Medicine Name", prompt: "Escitalopram", boundString: $name)
-                DetailIntField(title: "Dose Amount (mg)", prompt: "7", boundVar: $amount)
-                DetailIntField(title: "Dose Frequency (Hours)", prompt: "24", boundVar: $frequency)
-                Section {
-                    Button {
-                        rx.brandName = brand
-                        rx.medName = name
-                        rx.doseAmount = amount
-                        rx.doseFrequency = frequency
-                        SaveLoad().saveArrays(rx: rxArray, otc: otcArray)
-                        dismiss()
-                    } label: {
-                        Text("Save")
-                    }
-                    Button {
-                        if let index = rxArray.firstIndex(of: rx){
-                            rxArray.remove(at: index)
+        ZStack {
+            VStack {
+                List {
+                    DetailTextField(title: "Brand Name", prompt: "Lexapro", boundString: $brand)
+                        .disableAutocorrection(true)
+                    DetailTextField(title: "Medicine Name", prompt: "Escitalopram", boundString: $name)
+                        .disableAutocorrection(true)
+                    DetailIntField(title: "Dose Amount (mg)", prompt: "7", boundVar: $amount)
+                        .disableAutocorrection(true)
+                    DetailIntField(title: "Dose Frequency (Hours)", prompt: "24", boundVar: $frequency)
+                        .disableAutocorrection(true)
+                    Section {
+                        Button {
+                            rx.brandName = brand
+                            rx.medName = name
+                            rx.doseAmount = amount
+                            rx.doseFrequency = frequency
+                            SaveLoad().saveArrays(rx: rxArray, otc: otcArray)
+                            dismiss()
+                        } label: {
+                            Text("Save")
                         }
-                        SaveLoad().saveArrays(rx: rxArray, otc: otcArray)
-                        dismiss()
-                    } label: {
-                        Text("Delete")
+                        Button {
+                            if let index = rxArray.firstIndex(of: rx){
+                                rxArray.remove(at: index)
+                            }
+                            SaveLoad().saveArrays(rx: rxArray, otc: otcArray)
+                            dismiss()
+                        } label: {
+                            Text("Delete")
+                        }
                     }
                 }
             }
