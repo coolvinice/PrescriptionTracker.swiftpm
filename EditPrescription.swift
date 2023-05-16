@@ -10,33 +10,31 @@ struct EditPrescription: View {
     @State var amount: Int = 0
     @State var frequency: Int = 0
     var body: some View {
-        ZStack {
-            VStack {
-                List {
-                    DetailTextField(title: "Brand Name", prompt: "Lexapro", boundString: $brand)
-                    DetailTextField(title: "Medicine Name", prompt: "Escitalopram", boundString: $name)
-                    DetailIntField(title: "Dose Amount (mg)", prompt: "7", boundVar: $amount)
-                    DetailIntField(title: "Dose Frequency (Hours)", prompt: "24", boundVar: $frequency)
-                    Section {
-                        Button {
-                            rx.brandName = brand
-                            rx.medName = name
-                            rx.doseAmount = amount
-                            rx.doseFrequency = frequency
-                            SaveLoad().saveArrays(rx: rxArray, otc: otcArray)
-                            dismiss()
-                        } label: {
-                            Text("Save")
+        VStack {
+            List {
+                DetailTextField(title: "Brand Name", prompt: "Lexapro", boundString: $brand)
+                DetailTextField(title: "Medicine Name", prompt: "Escitalopram", boundString: $name)
+                DetailIntField(title: "Dose Amount (mg)", prompt: "7", boundVar: $amount)
+                DetailIntField(title: "Dose Frequency (Hours)", prompt: "24", boundVar: $frequency)
+                Section {
+                    Button {
+                        rx.brandName = brand
+                        rx.medName = name
+                        rx.doseAmount = amount
+                        rx.doseFrequency = frequency
+                        SaveLoad().saveArrays(rx: rxArray, otc: otcArray)
+                        dismiss()
+                    } label: {
+                        Text("Save")
+                    }
+                    Button {
+                        if let index = rxArray.firstIndex(of: rx){
+                            rxArray.remove(at: index)
                         }
-                        Button {
-                            if let index = rxArray.firstIndex(of: rx){
-                                rxArray.remove(at: index)
-                            }
-                            SaveLoad().saveArrays(rx: rxArray, otc: otcArray)
-                            dismiss()
-                        } label: {
-                            Text("Delete")
-                        }
+                        SaveLoad().saveArrays(rx: rxArray, otc: otcArray)
+                        dismiss()
+                    } label: {
+                        Text("Delete")
                     }
                 }
             }
@@ -46,19 +44,6 @@ struct EditPrescription: View {
                 amount = rx.doseAmount
                 frequency = rx.doseFrequency
             }
-            
-            VStack {
-                Rectangle()
-                    .frame(width: .infinity, height: 50)
-                    .foregroundColor(.indigo)
-
-                Spacer()
-                Rectangle()
-                    .frame(width: .infinity, height: 100)
-                    .foregroundColor(.indigo)
-            }
-            .ignoresSafeArea()
-            .frame(width: .infinity, height: .infinity)
         }
     }
 }
