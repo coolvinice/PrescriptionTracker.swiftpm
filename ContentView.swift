@@ -26,6 +26,7 @@ struct ContentView: View {
                                     .font(.title)
                             }
                         }
+                        .font(.title)
                         
                         Section("**Over-the-Counter**") {
                             ForEach($otcMeds) { item in
@@ -47,6 +48,7 @@ struct ContentView: View {
                                     .font(.title)
                             }
                         }
+                        .font(.title)
                     }
                     .listStyle(.sidebar)
                 }
