@@ -11,7 +11,7 @@ struct TimerView: View {
     }
     
     var body: some View {
-        Text(countDownString(from: referenceDate, until: endDate))
+        Text(countDownString(from: referenceDate, until: endDate) + " until next dose")
             .onAppear(perform: {
                 let _ = self.timer
             })

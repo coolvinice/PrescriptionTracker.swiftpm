@@ -9,7 +9,7 @@ struct EditOTCMed: View {
     @State var name: String = ""
     @State var amount: Int = 0
     @State var frequency: Int = 0
-
+    
     var body: some View {
         ZStack {
             VStack {
@@ -47,25 +47,12 @@ struct EditOTCMed: View {
 
                 }
             }
-            .onAppear() {
-                brand = med.brandName
-                name = med.medName
-                amount = med.doseAmount
-                frequency = med.doseFrequency
-            }
-            
-            VStack {
-                Rectangle()
-                    .frame(width: .infinity, height: 50)
-                    .foregroundColor(.indigo)
-
-                Spacer()
-                Rectangle()
-                    .frame(width: .infinity, height: 100)
-                    .foregroundColor(.indigo)
-            }
-            .ignoresSafeArea()
-            .frame(width: .infinity, height: .infinity)
+        }
+        .onAppear() {
+            brand = med.brandName
+            name = med.medName
+            amount = med.doseAmount
+            frequency = med.doseFrequency
         }
     }
 }

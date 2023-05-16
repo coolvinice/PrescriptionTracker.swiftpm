@@ -50,19 +50,6 @@ struct EditPrescription: View {
                 amount = rx.doseAmount
                 frequency = rx.doseFrequency
             }
-            
-            VStack {
-                Rectangle()
-                    .frame(width: .infinity, height: 50)
-                    .foregroundColor(.indigo)
-
-                Spacer()
-                Rectangle()
-                    .frame(width: .infinity, height: 100)
-                    .foregroundColor(.indigo)
-            }
-            .ignoresSafeArea()
-            .frame(width: .infinity, height: .infinity)
         }
     }
 }
