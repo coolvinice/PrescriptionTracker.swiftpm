@@ -28,6 +28,7 @@ struct EditOTCMed: View {
                             med.medName = name
                             med.doseAmount = amount
                             med.doseFrequency = frequency
+                            med.lastDose = Date.now
                             SaveLoad().saveArrays(rx: rxArray, otc: otcArray)
                             dismiss()
                         } label: {
@@ -38,7 +39,7 @@ struct EditOTCMed: View {
                                 otcArray.remove(at: index)
                             }
                             SaveLoad().saveArrays(rx: rxArray, otc: otcArray)
-                            dismiss()   
+                            dismiss()
                         } label: {
                             Text("Delete")
                         }
