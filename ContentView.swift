@@ -6,27 +6,28 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            ZStack {
                 VStack {
                     List {
-                        Section("Prescription") {
+                        Section("**Prescription**") {
                             ForEach($prescriptions) { item in
                                 let name: String = item.medName.wrappedValue
                                 let brand: String = item.brandName.wrappedValue
                                 NavigationLink {
                                     EditPrescription(rx: item, rxArray: $prescriptions, otcArray: $otcMeds)
                                 } label: {
-                                    Text("\(brand) (\(name))")
+                                    Text("**\(brand) (\(name))**")
+                                        .font(.title)
                                 }
                             }
                             NavigationLink {
                                 AddPrescription(otcMeds: $otcMeds, prescriptions: $prescriptions)
                             } label: {
-                                Text("Add New +")
+                                Text("**Add New +**")
+                                    .font(.title)
                             }
                         }
                         
-                        Section("Over-the-Counter") {
+                        Section("**Over-the-Counter**") {
                             ForEach($otcMeds) { item in
                                 let name: String = item.medName.wrappedValue
                                 let brand: String = item.brandName.wrappedValue
@@ -42,7 +43,8 @@ struct ContentView: View {
                             NavigationLink {
                                 AddOTCMed(otcMeds: $otcMeds, prescriptions: $prescriptions)
                             } label: {
-                                Text("Add New +")
+                                Text("**Add New +**")
+                                    .font(.title)
                             }
                         }
                     }
@@ -61,10 +63,9 @@ struct ContentView: View {
                 .ignoresSafeArea()
                 .frame(width: .infinity, height: .infinity)
             }
-        }
         .navigationViewStyle(.stack)
         .navigationTitle("Active Medications")
-    }
+        }
 }
 
 struct OTCListItem: View {
@@ -75,8 +76,8 @@ struct OTCListItem: View {
     let lastDose: Date
     var body: some View {
         VStack(alignment: .leading) {
-            Text("\(brand) (\(name))")
-                .font(.title2)
+            Text("**\(brand) (\(name))**")
+                .font(.title)
             Text(verbatim: "\(amount) mg Every \(frequency == 1 ? "Hour" : "\(frequency) Hours")")
             TimerView(endDate: lastDose.addingTimeInterval(TimeInterval(frequency * 360)), referenceDate: Date.now)
                 
