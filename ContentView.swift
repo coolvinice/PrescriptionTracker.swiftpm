@@ -12,7 +12,7 @@ struct ContentView: View {
                     
                     NavigationView {
 //                        Text("Active Medication")
-                            .font(.callout)
+//                            .font(.callout)
                         List {
                             Section("**Prescription**") {
                                 ForEach($prescriptions) { item in

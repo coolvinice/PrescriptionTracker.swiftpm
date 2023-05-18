@@ -16,12 +16,32 @@ struct EditOTCMed: View {
                 List {
                     DetailTextField(title: "Brand Name", prompt: "Lexapro", boundString: $brand)
                         .disableAutocorrection(true)
+                        .font(
+                            .title
+                            .weight(.semibold)
+
+                        )
                     DetailTextField(title: "Medicine Name", prompt: "Escitalopram", boundString: $name)
                         .disableAutocorrection(true)
+                        .font(
+                            .title
+                            .weight(.semibold)
+
+                        )
                     DetailIntField(title: "Dose Amount (mg)", prompt: "7", boundVar: $amount)
                         .disableAutocorrection(true)
+                        .font(
+                            .title
+                            .weight(.semibold)
+
+                        )
                     DetailIntField(title: "Dose Frequency (Hours)", prompt: "24", boundVar: $frequency)
                         .disableAutocorrection(true)
+                        .font(
+                            .title
+                            .weight(.semibold)
+
+                        )
                     Section {
                         Button {
                             med.brandName = brand
@@ -33,6 +53,11 @@ struct EditOTCMed: View {
                             dismiss()
                         } label: {
                             Text("Save")
+                                .font(
+                                    .title
+                                    .weight(.semibold)
+
+                                )
                         }
                         Button {
                             if let index = otcArray.firstIndex(of: med){
@@ -42,6 +67,11 @@ struct EditOTCMed: View {
                             dismiss()
                         } label: {
                             Text("Delete")
+                                .font(
+                                    .title
+                                    .weight(.semibold)
+
+                                )
                         }
                     }
 
