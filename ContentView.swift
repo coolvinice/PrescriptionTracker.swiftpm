@@ -104,9 +104,7 @@ struct OTCListItem: View {
                     .weight(.light)
 
                 )
-            TimerView(endDate: lastDose.addingTimeInterval(TimeInterval(frequency * 360)), referenceDate: Date.now)
-                
+            TimerView(endDate: lastDose.advanced(by: TimeInterval(frequency * 360)), referenceDate: Date.now)
         }
-        
     }
 }
