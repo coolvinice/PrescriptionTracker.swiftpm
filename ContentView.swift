@@ -11,8 +11,6 @@ struct ContentView: View {
                         .foregroundColor(.indigo)
                     
                     NavigationView {
-//                        Text("Active Medication")
-                            .font(.callout)
                         List {
                             Section("**Prescription**") {
                                 ForEach($prescriptions) { item in
