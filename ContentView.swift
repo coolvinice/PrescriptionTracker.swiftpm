@@ -11,8 +11,10 @@ struct ContentView: View {
                         .foregroundColor(.indigo)
                     
                     NavigationView {
+//                        Text("Active Medication")
+                            .font(.callout)
                         List {
-                            Section("Prescription") {
+                            Section("**Prescription**") {
                                 ForEach($prescriptions) { item in
                                     let name: String = item.medName.wrappedValue
                                     let brand: String = item.brandName.wrappedValue
@@ -25,10 +27,20 @@ struct ContentView: View {
                                 NavigationLink {
                                     AddPrescription(otcMeds: $otcMeds, prescriptions: $prescriptions)
                                 } label: {
-                                    Text("Add New +")
+                                    Text("**Add New +**")
+                                        .font(
+                                            .title
+                                            .weight(.semibold)
+
+                                        )
+
                                 }
                             }
-                            
+                            .font(
+                                .title
+                                .weight(.semibold)
+
+                            )
                             Section("Over-the-Counter") {
                                 ForEach($otcMeds) { item in
                                     let name: String = item.medName.wrappedValue
@@ -45,9 +57,20 @@ struct ContentView: View {
                                 NavigationLink {
                                     AddOTCMed(otcMeds: $otcMeds, prescriptions: $prescriptions)
                                 } label: {
-                                    Text("Add New +")
+                                    Text("**Add New +**")
+                                        .font(
+                                            .title
+                                            .weight(.semibold)
+
+                                        )
+                                    
                                 }
                             }
+                            .font(
+                                .title
+                                .weight(.semibold)
+
+                            )
                         }
                         .listStyle(.sidebar)
                     }
@@ -72,8 +95,17 @@ struct OTCListItem: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text("**\(brand) (\(name))**")
-                .font(.title)
+                .font(
+                    .title
+                    .weight(.semibold)
+
+                )
             Text(verbatim: "\(amount) mg Every \(frequency == 1 ? "Hour" : "\(frequency) Hours")")
+                .font(
+                    .body
+                    .weight(.light)
+
+                )
             TimerView(endDate: lastDose.addingTimeInterval(TimeInterval(frequency * 360)), referenceDate: Date.now)
                 
         }
