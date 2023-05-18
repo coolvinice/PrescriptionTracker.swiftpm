@@ -1,10 +1,3 @@
-//
-//  SaveLoad.swift
-//  PrescriptionTracker
-//
-//  Created by Calvin Rice on 5/4/23.
-//
-
 import SwiftUI
 
 struct SaveLoad {
