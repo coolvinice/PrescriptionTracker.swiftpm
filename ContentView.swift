@@ -29,9 +29,7 @@ struct ContentView: View {
                                         .font(
                                             .title
                                             .weight(.semibold)
-
                                         )
-
                                 }
                             }
                             .font(
@@ -104,7 +102,7 @@ struct OTCListItem: View {
                     .weight(.light)
 
                 )
-            TimerView(endDate: lastDose.advanced(by: TimeInterval(frequency * 360)), referenceDate: Date.now)
+            Text("Next dose in \(frequency):00")
         }
     }
 }
