@@ -19,7 +19,21 @@ struct ContentView: View {
                                     NavigationLink {
                                         EditPrescription(rx: item, rxArray: $prescriptions, otcArray: $otcMeds)
                                     } label: {
-                                        Text("\(brand) (\(name))")
+                                        VStack(alignment: .leading) {
+                                            Text("\(brand) (\(name))")
+                                            Text(verbatim: "\(item.doseAmount.wrappedValue) mg Every \(item.doseFrequency.wrappedValue == 1 ? "Hour" : "\(item.doseFrequency.wrappedValue) Hours")")
+                                                .font(
+                                                    .body
+                                                        .weight(.bold)
+                                                    
+                                                )
+                                            Text("Next dose in \(item.doseFrequency.wrappedValue):00")
+                                                .font(
+                                                    .body
+                                                        .weight(.bold)
+                                                    
+                                                )
+                                        }
                                     }
                                 }
                                 NavigationLink {
@@ -30,6 +44,7 @@ struct ContentView: View {
                                             .title
                                             .weight(.semibold)
                                         )
+                                    
                                 }
                             }
                             .font(
@@ -99,10 +114,15 @@ struct OTCListItem: View {
             Text(verbatim: "\(amount) mg Every \(frequency == 1 ? "Hour" : "\(frequency) Hours")")
                 .font(
                     .body
-                    .weight(.light)
+                    .weight(.bold)
 
                 )
             Text("Next dose in \(frequency):00")
+                .font(
+                    .body
+                    .weight(.bold)
+
+                )
         }
     }
 }
