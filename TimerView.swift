@@ -9,7 +9,6 @@ struct TimerView: View {
             self.nowDate = Date()
         }
     }
-    
     var body: some View {
         Text(countDownString(from: referenceDate, until: endDate) + " until next dose")
             .font(
