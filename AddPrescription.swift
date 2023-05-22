@@ -6,6 +6,7 @@ struct AddPrescription: View {
     @State var medicineName : String  = ""
     @State var doseAmount : Int =  0
     @State var doseFrequency : Int  = 0
+    @State var doseFrequency2 : Int = 0
     @Binding var otcMeds : [OTCMed]
     @Binding var prescriptions : [Prescription]
     @Environment(\.dismiss) private var dismiss
@@ -44,7 +45,7 @@ struct AddPrescription: View {
                         )
                     Button {
                         dismiss()
-                        prescriptions.append(Prescription(id: prescriptions.count, medName: medicineName, brandName: brandName, doseAmount: doseAmount, doseFrequency: doseFrequency, hasTaken: false))
+                        prescriptions.append(Prescription(id: prescriptions.count, medName: medicineName, brandName: brandName, doseAmount: doseAmount, doseFrequency: doseFrequency, doseFrequency2: doseFrequency2, hasTaken: false))
                         SaveLoad().saveArrays(rx: prescriptions, otc: otcMeds)
                     } label: {
                         Text("Save")

@@ -10,6 +10,7 @@ struct TimerView: View {
     self.nowDate = Date()
     }
     }
+    
     var body: some View {
         Text(TimerFunction(from: referenceDate) + " until next dose")
             .font(
