@@ -1,35 +1,24 @@
 import SwiftUI
+import Foundation
 
 struct TimerView: View {
-    @State var nowDate: Date = Date()
-    @State var endDate: Date
-    @State var referenceDate: Date
-    @State var frequency: Int = 0
-    @State var frequency2: Int = 0
-    let setDate: Date
-    var timer: Timer {
-    Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {_ in
-    self.nowDate = Date()
-    }
-    }
+    @State var nextDose: Date
+    @State var timeUntilNextDose: String = ""
     
     var body: some View {
-        Text(TimerFunction(from: referenceDate) + " until next dose")
+        Text(timeUntilNextDose + " until next dose")
             .font(
                 .body
-                .weight(.light)
+                .weight(.bold)
             )
+            .onAppear(){
+                timeUntilNextDose = TimeUntil(until: nextDose)
+            }
     }
     
-    func TimerFunction(from date: Date) -> String {
-    let calendar = Calendar(identifier: .gregorian)
-    let timeValue = calendar
-    .dateComponents([.day, .hour, .minute, .second], from: nowDate, to: setDate)
-    return String(format: "%02d days left - %02d:%02d:%02d",
-    timeValue.day!,
-    timeValue.hour!,
-    timeValue.minute!,
-    timeValue.second!)
+    func TimeUntil(until referenceDate: Date) -> String {
+        let timeInterval = Calendar.current.dateComponents([.hour, .minute], from: Date.now, to: referenceDate)
+        return "\(timeInterval.hour ?? 00):\(timeInterval.minute ?? 00)"
     }
 }
         

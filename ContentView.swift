@@ -119,14 +119,8 @@ struct OTCListItem: View {
                 .font(
                     .body
                     .weight(.bold)
-
                 )
-            Text("Next dose in \(frequency):00")
-                .font(
-                    .body
-                    .weight(.bold)
-
-                )
+            TimerView(nextDose: lastDose.addingTimeInterval(TimeInterval(frequency * 3600)))
         }
     }
 }
