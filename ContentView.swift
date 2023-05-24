@@ -10,6 +10,10 @@ struct ContentView: View {
                         .frame(width: .infinity, height: 60)
                         .foregroundColor(.indigo)
                     
+                    NavigationLink("Settings") {
+                        NotificationsView()
+                    }
+                    
                     NavigationView {
                         List {
                             Section("**Prescription**") {
