@@ -1,33 +1,24 @@
-//import SwiftUI
-//
-//func movingToBackground() {
-//        print("Moving to the background")
-//        notificationDate = Date()
-//
-//        fbManager.pause()
-//
-//    }
-//
-//
-//    func movingToForeground() {
-//        print("Moving to the foreground")
-//        let deltaTime: Int = Int(Date().timeIntervalSince(notificationDate))
-//
-//        let deltaTimefill : Double = Double(deltaTime) / Double(300)
-//
-//        fbManager.breakElapsed -= deltaTime
-//
-//        if fbManager.breakElapsed <= 0 {
-//            notify.sendNotification(
-//                date: Date(),
-//                type: "time",
-//                timeInterval: 5,
-//                title: "AppName+",
-//                body: "Your timer has ended")
-//        }
-//
-//
-//        fbManager.breakFill += deltaTimefill
-//
-//        fbManager.startBreak()
-//    }
+import UserNotifications
+import SwiftUI
+func Notification() {
+  UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+            if success {
+
+              
+            } else if let error = error {
+               
+            }
+        }
+        
+        
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        let content = UNMutableNotificationContent()
+        content.title = "Medicine "
+        content.body = "Daily Notification is Ready"
+        content.sound = UNNotificationSound.default
+
+        var dateComponents = DateComponents()
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request)
+}
