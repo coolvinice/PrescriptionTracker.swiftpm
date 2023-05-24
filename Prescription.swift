@@ -4,6 +4,5 @@ struct Prescription: Identifiable, Codable, Equatable {
     var brandName: String //Lexapro
     var doseAmount: Int //mg
     var doseFrequency: Int //hours
-    var doseFrequency2: Int // minutes
     var hasTaken: Bool //tracks if you took it today
 }

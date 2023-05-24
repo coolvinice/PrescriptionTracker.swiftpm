@@ -4,6 +4,8 @@ struct TimerView: View {
     @State var nowDate: Date = Date()
     @State var endDate: Date
     @State var referenceDate: Date
+    @State var frequency: Int = 0
+    @State var frequency2: Int = 0
     let setDate: Date
     var timer: Timer {
     Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {_ in
