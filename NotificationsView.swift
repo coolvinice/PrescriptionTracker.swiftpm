@@ -4,7 +4,7 @@
 //
 //  Created by Alan Muszynski on 5/24/23.
 //
-
+//
 import SwiftUI
 import UserNotifications
 
@@ -25,14 +25,14 @@ struct NotificationsView: View {
                 content.title = "Feed Cat"
                 content.subtitle = "Looks Hungry"
                 content.sound = UNNotificationSound.default
-                
+
                 let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-                
+
                 let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-                
+
                 UNUserNotificationCenter.current().add(request)
             }
-            
+
         }
     }
 }

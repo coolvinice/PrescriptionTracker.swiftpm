@@ -13,7 +13,7 @@ func Notification() {
         
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         let content = UNMutableNotificationContent()
-        content.title = "Medicine "
+        content.title = "Medicine"
         content.body = "Daily Notification is Ready"
         content.sound = UNNotificationSound.default
 
