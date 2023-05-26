@@ -1,5 +1,4 @@
 import Foundation
-
 struct OTCMed: Identifiable, Codable, Equatable {
     var id: Int
     var medName: String //Ibuprofen
