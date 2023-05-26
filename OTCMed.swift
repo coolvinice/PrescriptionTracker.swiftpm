@@ -1,4 +1,4 @@
-import SwiftUI
+import Foundation
 
 struct OTCMed: Identifiable, Codable, Equatable {
     var id: Int
