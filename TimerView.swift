@@ -18,7 +18,12 @@ struct TimerView: View {
     
     func TimeUntil(until referenceDate: Date) -> String {
         let timeInterval = Calendar.current.dateComponents([.hour, .minute], from: Date.now, to: referenceDate)
-        return "\(timeInterval.hour ?? 00):\(timeInterval.minute ?? 00)"
+        
+        var timeString = "\(String(format: "%02d", timeInterval.hour ?? 0)):\(String(format: "%02d", timeInterval.minute ?? 0))"
+        if(timeInterval.hour ?? 0 <= 0 && timeInterval.minute ?? 0 <= 0) {
+            timeString = "00:00"
+        }
+        return timeString
     }
 }
         

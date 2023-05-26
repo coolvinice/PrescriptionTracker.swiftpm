@@ -45,7 +45,7 @@ struct AddPrescription: View {
                         )
                     Button {
                         dismiss()
-                        prescriptions.append(Prescription(id: prescriptions.count, medName: medicineName, brandName: brandName, doseAmount: doseAmount, doseFrequency: doseFrequency, hasTaken: false))
+                        prescriptions.append(Prescription(id: prescriptions.count, medName: medicineName, brandName: brandName, doseAmount: doseAmount, doseFrequency: doseFrequency, lastDose: Date.now))
                         SaveLoad().saveArrays(rx: prescriptions, otc: otcMeds)
                     } label: {
                         Text("Save")
