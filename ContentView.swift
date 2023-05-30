@@ -1,4 +1,5 @@
 import SwiftUI
+import UserNotifications
 
 struct ContentView: View {
     @State var prescriptions: [Prescription] = SaveLoad().loadArrays().0
@@ -6,6 +7,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
+           
             Rectangle()
                 .frame(width: .infinity, height: 60)
                 .foregroundColor(.indigo)
@@ -74,8 +76,30 @@ struct ContentView: View {
                             .weight(.semibold)
                         
                     )
+                    Button("Request Permission") {
+                        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+                            if success {
+                                print("Request Accepted")
+                            } else if let error = error {
+                                print(error.localizedDescription)
+                            }
+                        }            }
+                    Button("Schedule Notification") {
+                        let content = UNMutableNotificationContent()
+                        content.title = "Take Medicine"
+                        content.subtitle = "Timer is up"
+                        content.sound = UNNotificationSound.default
+                        
+                        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
+                        
+                        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+                        
+                        
+                        UNUserNotificationCenter.current().add(request)
+                    }
                 }
                 .listStyle(.sidebar)
+                
             }
             .navigationViewStyle(.stack)
             .navigationTitle("Active Medications")
@@ -84,6 +108,7 @@ struct ContentView: View {
                 .frame(width: .infinity, height: 100)
                 .foregroundColor(.indigo)
         }
+        
         .ignoresSafeArea()
         
     }
